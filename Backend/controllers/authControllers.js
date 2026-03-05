@@ -1,5 +1,7 @@
 const User = require ("../models/user.js");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 
 function isValidPassword(password){
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{1,8}$/;
@@ -33,22 +35,37 @@ exports.registerUser = async (req,res) => {
    }   
 };
 
-exports.loginUser = async (req,res) => {
+exports.loginUser = async (req, res) => {
+  const { user_name, user_id, password } = req.body;
 
-    const { user_name, user_id, password } =req.body;
-    try{
+  try {
     const user = await User.findOne({ user_id });
-    if(!user){
-        return res.status(400).json({message: "Invalid user_id or password" });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid user_id or password" });
     }
 
-    const isMatch = await bcrypt.compare(password,user.password);
-    if(!isMatch){
-        return res.status(400).json({message: "Invalid user_id or password"});
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid user_id or password" });
     }
 
-    res.status(200).json({message: "Login successful",user_name: user.user_name, user_id: user.user_id})
-   }catch(err){
-    return res.status(500).json({message: "Server error"});
-   }
+    // ✅ CREATE TOKEN
+    const token = jwt.sign(
+      { id: user._id, user_id: user.user_id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user_name: user.user_name,
+      user_id: user.user_id,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Server error" });
+  }
 };
