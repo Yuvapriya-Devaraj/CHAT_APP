@@ -45,8 +45,6 @@ const addFriend = async () => {
     alert("Server error");
   }
 };
-
-useEffect(() => {
 const loadFriends = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_API_URL}/chat/friends/${user}`
@@ -54,6 +52,7 @@ const loadFriends = async () => {
   const data = await res.json();
   setContacts(data);
 };
+useEffect(() => {
   loadFriends();
 }, [user]);
 
