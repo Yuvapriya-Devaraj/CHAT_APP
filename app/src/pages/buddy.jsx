@@ -22,7 +22,7 @@ const addFriend = async () => {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/chat/add-friend", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/chat/add-friend`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -45,15 +45,15 @@ const addFriend = async () => {
     alert("Server error");
   }
 };
+
+useEffect(() => {
 const loadFriends = async () => {
   const res = await fetch(
-    `http://localhost:5000/chat/friends/${user}`
+    `${import.meta.env.VITE_API_URL}/chat/friends/${user}`
   );
   const data = await res.json();
   setContacts(data);
 };
-
-useEffect(() => {
   loadFriends();
 }, [user]);
 
