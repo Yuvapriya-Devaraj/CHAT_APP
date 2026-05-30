@@ -45,13 +45,13 @@ const addFriend = async () => {
     alert("Server error");
   }
 };
-const loadFriends = async () => {
+const loadFriends = useCallback(async () => {
   const res = await fetch(
     `${import.meta.env.VITE_API_URL}/chat/friends/${user}`
   );
   const data = await res.json();
   setContacts(data);
-};
+});
 useEffect(() => {
   loadFriends();
 }, [user, loadFriends]);
