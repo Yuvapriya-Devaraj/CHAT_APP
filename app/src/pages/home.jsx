@@ -6,7 +6,7 @@ import { getSocket } from "../socket";
 function Home() {
   const socket = getSocket();
 
-  const joinedRef = useRef(false);
+ // const joinedRef = useRef(false);
   const messagesEndRef = useRef(null);
 
   const fileInputRef = useRef(null);
@@ -81,7 +81,7 @@ socket.on("new_message", (msg) => {
     socket.off("typing");
     socket.off("stop_typing");
   };
-}, [ friendId]);
+}, [socket, userId, friendId]);
 
   const sendMessage = () => {
   if (!message.trim()) return;

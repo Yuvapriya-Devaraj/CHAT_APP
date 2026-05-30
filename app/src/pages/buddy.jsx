@@ -54,7 +54,7 @@ const loadFriends = async () => {
 };
 useEffect(() => {
   loadFriends();
-}, [user]);
+}, [user, loadFriends]);
 
 const handleLogout = () => {
   localStorage.clear();
