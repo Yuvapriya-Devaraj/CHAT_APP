@@ -51,10 +51,10 @@ const loadFriends = useCallback(async () => {
   );
   const data = await res.json();
   setContacts(data);
-});
+},[user]);
 useEffect(() => {
   loadFriends();
-}, [user, loadFriends]);
+}, [loadFriends]);
 
 const handleLogout = () => {
   localStorage.clear();
