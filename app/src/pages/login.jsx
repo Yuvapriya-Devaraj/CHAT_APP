@@ -38,7 +38,7 @@ function Login(){
                 body: JSON.stringify(form)
             });
     console.log("Form sent:", form);
-console.log("API URL:", import.meta.env.VITE_API_URL);
+
 const data = await res.json();
 console.log("Response from backend:", data);
 

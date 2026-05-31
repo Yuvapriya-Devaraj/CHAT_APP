@@ -7,6 +7,7 @@ function Register(){
 
     const navigate = useNavigate();
 
+    console.log("API URL:", import.meta.env.VITE_API_URL);
     const [form, setForm] = useState({
         user_name:"",
         user_id:"",
