@@ -22,7 +22,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin:[ "http://localhost:3000","https://chat-lrqpilov0-yuvapriya-devarajs-projects.vercel.app/"],
+    origin:[ "http://localhost:3000","https://chat-lrqpilov0-yuvapriya-devarajs-projects.vercel.app"],
     methods: ["GET", "POST"],
   },
 });
@@ -131,6 +131,8 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5000, () =>
-  console.log("🚀 Server running on http://localhost:5000")
-);
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
