@@ -22,13 +22,13 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin:[ "http://localhost:3000","https://chat-lrqpilov0-yuvapriya-devarajs-projects.vercel.app/"],
     methods: ["GET", "POST"],
   },
 });
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/ChatApp")
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("DB Connected"))
   .catch((err) => console.error(err));
 
