@@ -24,7 +24,7 @@ const io = new Server(server, {
   cors: {
     origin: [
   "http://localhost:3000",
-  "https://chat-9zekf4qnm-yuvapriya-devarajs-projects.vercel.app/"
+  "https://chat-app-ivory-nine-16.vercel.app/"
 ],
     methods: ["GET", "POST"],
   },
