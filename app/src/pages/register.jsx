@@ -7,7 +7,7 @@ function Register(){
 
     const navigate = useNavigate();
 
-    console.log("API URL:", import.meta.env.VITE_API_URL);
+    console.log("API URL:", process.env.REACT_APP_API_URL);
     const [form, setForm] = useState({
         user_name:"",
         user_id:"",
@@ -34,7 +34,7 @@ function Register(){
         }
         
         try{
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`,{
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/auth/register`,{
             method:"POST",
             headers: { "Content-type":"application/json" },
             body: JSON.stringify(form)

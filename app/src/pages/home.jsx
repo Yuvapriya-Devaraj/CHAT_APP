@@ -122,7 +122,7 @@ socket.on("new_message", (msg) => {
   formData.append("sender_id", userId);
   formData.append("receiver_id", friendId);
 
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/chat/upload`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/chat/upload`, {
     method: "POST",
     body: formData,
   });
@@ -158,16 +158,16 @@ socket.on("new_message", (msg) => {
           <div className="text" style={{color:"black"}}>  {msg.type === "text" && msg.message}
 
 {msg.type === "image" && (
-  <img src={`$${import.meta.env.VITE_API_URL}${msg.fileUrl}`} className="chat-image" alt="sent" />
+  <img src={`$${process.env.REACT_APP_API_URL}${msg.fileUrl}`} className="chat-image" alt="sent" />
 )}
 
 {msg.type === "video" && (
-  <video controls className="chat-video" src={`${import.meta.env.VITE_API_URL}${msg.fileUrl}`} />
+  <video controls className="chat-video" src={`${process.env.REACT_APP_API_URL}${msg.fileUrl}`} />
 )}
 
 {msg.type === "file" && (
   <a
-    href={`${import.meta.env.VITE_API_URL}${msg.fileUrl}`}
+    href={`${process.env.REACT_APP_API_URL}${msg.fileUrl}`}
     target="_blank"
     rel="noopener noreferrer"
     className="chat-file"
