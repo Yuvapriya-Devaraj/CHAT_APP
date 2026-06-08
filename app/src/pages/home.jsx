@@ -5,7 +5,7 @@ import { getSocket } from "../socket";
 
 function Home() { 
   const socket = getSocket();
-  if(!socket) return;
+  
 
  // const joinedRef = useRef(false);
   const messagesEndRef = useRef(null);

@@ -6,6 +6,10 @@ import Buddy from "./pages/buddy";
 
 
 function App(){
+  useEffect(() => {
+    connectSocket(); 
+  }, []);
+
   return (
     <BrowserRouter>
     <Routes>
