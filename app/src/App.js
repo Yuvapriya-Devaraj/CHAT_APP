@@ -3,7 +3,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Home from "./pages/home";
 import Buddy from "./pages/buddy";
-import {connectSocket} from socket.js;
+import {connectSocket} from "./socket";
 import {useEffect} from "react";
 
 
