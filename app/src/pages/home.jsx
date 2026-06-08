@@ -5,7 +5,7 @@ import { getSocket } from "../socket";
 
 function Home() {
   const socket = getSocket();
-
+  if (!socket) return;
  // const joinedRef = useRef(false);
   const messagesEndRef = useRef(null);
 
@@ -29,6 +29,8 @@ const location = useLocation();
 //const friendId = friend?._id;
 
   useEffect(() => {
+    const socket = getSocket();
+if (!socket) return;
   if (!socket || !friendId) return;
   console.log("My ID:", userId);
 console.log("Friend ID:", friendId);
@@ -84,6 +86,8 @@ socket.on("new_message", (msg) => {
 }, [socket, userId, friendId]);
 
   const sendMessage = () => {
+    const socket = getSocket();
+if (!socket) return;
   if (!message.trim()) return;
   socket.emit("send_message", {
     friendId,
@@ -99,6 +103,8 @@ socket.on("new_message", (msg) => {
 
   
   const handleTyping = (e) => {
+    const socket = getSocket();
+if (!socket) return;
     setMessage(e.target.value);
     socket.emit("typing", { friendId });
     setTimeout(() => socket.emit("stop_typing", { friendId }), 1000);
@@ -158,7 +164,7 @@ socket.on("new_message", (msg) => {
           <div className="text" style={{color:"black"}}>  {msg.type === "text" && msg.message}
 
 {msg.type === "image" && (
-  <img src={`$${process.env.REACT_APP_API_URL}${msg.fileUrl}`} className="chat-image" alt="sent" />
+  <img src={`${process.env.REACT_APP_API_URL}${msg.fileUrl}`} className="chat-image" alt="sent" />
 )}
 
 {msg.type === "video" && (
