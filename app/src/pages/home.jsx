@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 //import socket from "../socket";
 import { getSocket } from "../socket";
 
-function Home() {
+function Home() { 
   const socket = getSocket();
-  if (!socket) return;
+  if(!socket) return;
+
  // const joinedRef = useRef(false);
   const messagesEndRef = useRef(null);
 
@@ -29,8 +30,6 @@ const location = useLocation();
 //const friendId = friend?._id;
 
   useEffect(() => {
-    const socket = getSocket();
-if (!socket) return;
   if (!socket || !friendId) return;
   console.log("My ID:", userId);
 console.log("Friend ID:", friendId);
@@ -86,8 +85,6 @@ socket.on("new_message", (msg) => {
 }, [socket, userId, friendId]);
 
   const sendMessage = () => {
-    const socket = getSocket();
-if (!socket) return;
   if (!message.trim()) return;
   socket.emit("send_message", {
     friendId,
@@ -103,8 +100,6 @@ if (!socket) return;
 
   
   const handleTyping = (e) => {
-    const socket = getSocket();
-if (!socket) return;
     setMessage(e.target.value);
     socket.emit("typing", { friendId });
     setTimeout(() => socket.emit("stop_typing", { friendId }), 1000);
