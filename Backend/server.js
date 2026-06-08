@@ -23,7 +23,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: 
-  "https://chat-app-ivory-nine-16.vercel.app/",
+  "https://chat-blchf2veb-yuvapriya-devarajs-projects.vercel.app/",
     methods: ["GET", "POST"],
   },
 });
